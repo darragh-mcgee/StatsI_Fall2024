@@ -73,72 +73,53 @@
 
 A school counselor was curious about the average of IQ of the students in her school and took a random sample of 25 students' IQ scores. The following is the data set:\\
 \vspace{.5cm}
-\lstinputlisting[language=R, firstline=39, lastline=39]{PS01_answers_DMcG.R}  
+\lstinputlisting[language=R, firstline=40, lastline=41]{PS01_answers_DMcG.R}  
 \vspace{.5cm}
+
 \begin{enumerate}
-	\item \textbf{Find a 90\% confidence interval for the average student IQ in the school.}
-	
-90 Percent Confidence Interval = Point Estimate i.e. Mean +/- Margin of Error (Critical Value*Standard Error)
+\item \textbf{Find a 90\% confidence interval for the average student IQ in the school.}
+\end{enumerate}
+
+\noindent 90 Percent Confidence Interval = Point Estimate i.e. Mean +/- Margin of Error (Critical Value*Standard Error)
 
 \vspace{.5cm}
-\textbf{Step 1:} Input Data Set of Student IQs and Create Vector
-\begin{verbatim}
-Student_IQ <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 
-94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98)
-\end{verbatim}
+\noindent\textbf{Step 1:} Input Data Set of Student IQs and Create Vector
+\lstinputlisting[language=R, firstline=40, lastline=41]{PS01_answers_DMcG.R} 
 
-\textbf{Step 2:} Calculating Mean Student Height
-\begin{verbatim}
-	mean_IQ <- mean(Student_IQ)
-	print(mean_IQ)
-\end{verbatim}
+\vspace{.5cm}
+\noindent\textbf{Step 2:} Calculating Mean Student Height
+\lstinputlisting[language=R, firstline=43, lastline=44]{PS01_answers_DMcG.R} 
 Mean Student IQ =  98.44
 
 \vspace{.5cm}
-\textbf{Step 3:} Calculating Standard Error
-\begin{verbatim}
-	standard_error_IQ <- sd(Student_IQ)/sqrt(length(Student_IQ))
-	print(standard_error_IQ)
-\end{verbatim}
+\noindent\textbf{Step 3:} Calculating Standard Error
+\lstinputlisting[language=R, firstline=47, lastline=48]{PS01_answers_DMcG.R} 
 Standard Error = 2.618575
 
 \vspace{.5cm}
-\textbf{Step 4:} Calculate Test Statistic for 90 Percent Confidence Level
-As the sample size is 25 (Less than 30) a T-Distribution should be used for Critical Value.  
+\noindent\textbf{Step 4:} Calculate Test Statistic for 90 Percent Confidence Level
 
-T-Statistic Formula requires Degrees of Freedom
-Degrees of freedom (df = n - 1)
-\begin{verbatim}
-	df <- 25 - 1
-	print(df)
-\end{verbatim}
+\noindent As the sample size is 25 (Less than 30) a T-Distribution should be used for Critical Value.  
+
+\vspace{.5cm}
+\noindent T-Statistic Formula requires Degrees of Freedom Degrees of Freedom (n-1)
+\lstinputlisting[language=R, firstline=56, lastline=57]{PS01_answers_DMcG.R} 
+
 Degrees of Freedom = 24
 
-T-Statistics for 90 Percent Confidence Interval is interested in the Critical Value for the First 5 Percent and Last 5 Percent of the Distribution 
-\begin{verbatim}
-t_score_lower <- qt(0.05, df) # Critical Value for First 5% (Lower Bound)
-print(t_score_lower)
-t_score_upper <- qt(0.95, df) # Critical Value for Last 5% (Upper Bound)
-print(t_score_upper)
-\end{verbatim}
+\vspace{.5cm}
+\noindent T-Statistics for 90 Percent Confidence Interval is interested in the Critical Value for the First 5 Percent and Last 5 Percent of the Distribution 
+\lstinputlisting[language=R, firstline=61, lastline=64]{PS01_answers_DMcG.R} 
 t-score = +/- 1.710882
 
-
-\textbf{Step 5: }Construct 90 Percent Confidence Interval 
-\begin{verbatim}
-	lower_bound <- (mean_IQ+(t_score_lower)*(standard_error_IQ))
-	print(lower_bound)
-	upper_bound <- (mean_IQ+(t_score_upper)*(standard_error_IQ))
-	print(upper_bound)
-\end{verbatim}
-
+\vspace{.5cm}
+\noindent\textbf{Step 5: }Construct 90 Percent Confidence Interval 
+\lstinputlisting[language=R, firstline=67, lastline=70]{PS01_answers_DMcG.R} 
 90 Percent Confidence Interval = 93.95933 to 102.9201
 
-
-\textbf{Using in-built t.test() formula in R to check results}
-\begin{verbatim}
-	t.test(Student_IQ, conf.level = 0.9, alternative = "two.sided")
-\end{verbatim}
+\vspace{.5cm}
+\noindent \textbf{Validating Approach:} Using in-built t.test() formula in R to check results
+\lstinputlisting[language=R, firstline=75, lastline=75]{PS01_answers_DMcG.R}
 \begin{verbatim}
 	90 percent confidence interval:
 	93.95993 102.92007
@@ -146,7 +127,11 @@ t-score = +/- 1.710882
 	mean of x 
 	98.44 
 \end{verbatim}
-The results from the in-built t.test function are equal to the step-by-step calculations (allowing for marginal rounding differences).  
+The results from the in-built t.test function are equal to the step-by-step calculations (allowing for marginal rounding differences). 
+
+\newpage 
+\begin{enumerate}
+\setcounter{enumi}{1}
 	\item Next, the school counselor was curious  whether  the average student IQ in her school is higher than the average IQ score (100) among all the schools in the country. 
 	
 	\noindent Using the same sample, conduct the appropriate hypothesis test with $\alpha=0.05$.
@@ -170,43 +155,34 @@ Observations are independent of one another.
 \textbf{Step 2: }Setting Up Hypothesis
 \begin{itemize}
 \item
-\textbf{Null Hypothesis:} The average Student IQ in the sample school is equal to the average IQ score (100) among all the schools in the country 
+\textbf{Null Hypothesis:} The average Student IQ in the sample school is less than or equal to the average IQ score (100) among all the schools in the country 
 \item
 \textbf{Alternative Hypothesis:} The average student IQ in the sample school is greater than the average IQ score (100) among all the schools in the country
 \end{itemize}
-\vspace{.5cm}
-\textbf{Steps 3 and 4:} Calculating Test Statistic and P-Value using T-Test formula: 
-\begin{verbatim}
-t.test(Student_IQ, mu = 100, alternative = c("greater"), conf.level=0.95)
-\end{verbatim}
 
-T-test Output
-\begin{verbatim}
-	t = -0.59574, df = 24, p-value = 0.7215
-	alternative hypothesis: true mean is greater than 100
-	95 percent confidence interval:
-	93.95993      Inf
-	sample estimates:
-	mean of x 
-	98.44 
-\end{verbatim}
 \vspace{.5cm}
-\textbf{Step 5:} Conclusion  
+\noindent\textbf{Steps 3:} Calculate the Test-Statistic 
+\lstinputlisting[language=R, firstline=94, lastline=96]{PS01_answers_DMcG.R}
+T-Statistic = -0.5957439
+
+\vspace{.5cm}
+\noindent\textbf{Steps 4:} Calculate the p-value 
+\lstinputlisting[language=R, firstline=99, lastline=100]{PS01_answers_DMcG.R}
+p-value = 0.7215383
+
+\vspace{.5cm}
+\noindent\textbf{Step 5:} Conclusion  
 \begin{itemize}
 	\item 
-Fail to reject the Null Hypothesis as the p-value is greater than 0.05 ( exceeding the 5 percent significance level). 
+Fail to reject the Null Hypothesis as the p-value is greater than 0.05 (exceeding the 5 percent significance level). 
 \item 
 There is insufficient evidence to conclude that the sample mean is greater than 100.
 \end{itemize}
 
 \newpage
-
 	\section*{Question 2: Political Economy}
 
 \noindent Researchers are curious about what affects the amount of money communities spend on addressing homelessness. The following variables constitute our data set about social welfare expenditures in the USA. \\
-\vspace{.5cm}
-
-\includegraphics[width=0.8\textwidth]{Figure 1.1.png}
 
 \begin{tabular}{r|l}
 	\texttt{State} &\emph{50 states in US} \\
@@ -220,19 +196,152 @@ There is insufficient evidence to conclude that the sample mean is greater than 
 \vspace{.5cm}
 \noindent Explore the \texttt{expenditure} data set and import data into \texttt{R}.
 \vspace{.5cm}
-\lstinputlisting[language=R, firstline=54, lastline=54]{PS01_answers_DMcG.R}  
+\lstinputlisting[language=R, firstline=117, lastline=117]{PS01_answers_DMcG.R}  
 \vspace{.5cm}
 \begin{itemize}
-
 \item
 Please plot the relationships among \emph{Y}, \emph{X1}, \emph{X2}, and \emph{X3}? What are the correlations among them (you just need to describe the graph and the relationships among them)?
 \vspace{.5cm}
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=124, lastline=127]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between per capita expenditure on housing assistance and personal income in state}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_1_1.png}
+\end{figure}
+
+\begin{itemize}
+	\item 
+A moderate positive correlation is observable between per capita personal income in state and per capita expenditure on housing assistance in state.
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=134, lastline=138]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between per capita expenditure on housing assistance and financially insecure residents per 100,000 in state}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_1_2.png}
+\end{figure}
+
+\begin{itemize}
+	\item 
+A moderate positive correlation is observable between per capita expenditure on housing assistance and financially insecure residents per 100,000 in the state.
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=146, lastline=150]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between per capita expenditure on housing assistance and people residing in urban areas per 1000 in state}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_1_3.png}
+\end{figure}
+
+\begin{itemize}
+	\item 
+A moderate positive correlation is observable between people residing in urban areas per 1000 in state and per capita expenditure on housing legal assistance in state. 
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=158, lastline=162]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between per capita personal income in state and financially insecure residents per 100,000 in state}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_1_4.png}
+\end{figure}
+
+\begin{itemize}
+	\item 
+There is no clear linear correlation observable between the per capita personal income in state and financially insecure residents per 100,000 in state. 
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=169, lastline=173]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between per capita personal income in state and people residing in urban areas per 1000 in state}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_1_5.png}
+\end{figure}
+
+\begin{itemize}
+	\item 
+A moderate positive correlation is observable between people residing in urban areas per 1000 in state and per capita personal income in state. 
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=181, lastline=185]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between financially insecure residents per 100,000 in state and people residing in urban areas per 1000 in state}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_1_6.png}
+\end{figure}
+
+\begin{itemize}
+	\item 
+There is no clear linear correlation observable between people residing in urban areas per 1000 in state and financially insecure residents per 100,000 in state.
+\end{itemize}
+
+\newpage
+\begin{itemize}
 \item
 Please plot the relationship between \emph{Y} and \emph{Region}? On average, which region has the highest per capita expenditure on housing assistance?
+\end{itemize}
 \vspace{.5cm}
+
+\lstinputlisting[language=R, firstline=203, lastline=207]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Boxplot of per capita expenditure on housing assistance per region}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_2_1.png}
+\end{figure}
+\vspace{.5cm}
+
+\begin{itemize}
+\item 
+The box plot visualises the median and interquartile range for per capita expenditure on housing assistance in state. 
+\item 
+The West Region has the highest median per capita expenditure on housing assistance. There is wide variation in the data for this region, as evidenced by the largest Interquartile Range across Regions. 
+\end{itemize}
+
+\newpage
+\begin{itemize}
 \item
 Please plot the relationship between \emph{Y} and \emph{X1}? Describe this graph and the relationship. Reproduce the above graph including one more variable \emph{Region} and display different regions with different types of symbols and colors.
 \end{itemize}
 
+\lstinputlisting[language=R, firstline=218, lastline=222]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between Per Capita Personal Income and Housing Assistance Expenditure}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_2_2.png}
+\end{figure}
+
+\begin{itemize}
+\item 
+A moderate positive correlation is observable between per capita personal income in state and per capita expenditure on housing assistance in state. 
+\item 
+The data points are relatively spread out, indicating moderate variability in expenditure at similar income levels.  
+\item 
+There are some outliers in the data, particularly at higher end of per capita personal income in state. 
+\end{itemize}
+
+\newpage
+\lstinputlisting[language=R, firstline=233, lastline=246]{PS01_answers_DMcG.R}
+\begin{figure}[H]
+	\caption{Scatterplot of relationship between Per Capita Personal Income and Housing Assistance Expenditure by Region}
+	\centering
+	\includegraphics[width=0.8\textwidth]{Figure_2_3.png}
+\end{figure}
+\begin{itemize}
+\item 
+Overall, there is a general upward trend, indicating that states with higher per capita income tend to spend more on housing assistance per capita.
+\item 
+The Northeast and West Regions show that higher per capita income states spend more per capita on housing assistance.
+\item
+North Central states show moderate expenditures on housing assistance at moderate income levels, with some variability.
+\item 
+Southern States tend to have lower per capita income in state and lower per capita expenditure on housing assistance in state. 
+\end{itemize}
 
 \end{document}

@@ -37,11 +37,7 @@ lapply(c(),  pkgTest)
 # 90% Confidence Interval = Point Estimate i.e. Mean +/- Margin of Error 
 # (Critical Value*Standard Error)
 # Input Data Set of Student IQs and Create Vector
-Student_IQ <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 
-                112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98)
-
-length(Student_IQ)
-hist(Student_IQ)
+Student_IQ <- c(105, 69, 86, 100, 82, 111, 104, 110, 87, 108, 87, 90, 94, 113, 112, 98, 80, 97, 95, 111, 114, 89, 95, 126, 98)
 
 # Calculating Mean Student Height
 mean_IQ <- mean(Student_IQ)
@@ -88,8 +84,6 @@ t.test(Student_IQ, conf.level = 0.9, alternative = "two.sided")
 # The data is approximately normally distributed. 
 # Observations are independent of one another. 
 
-Population_Mean_IQ <- 100
-
 # Step 2: Setting Up Hypothesis
 # Null Hypothesis: The average Student IQ in the sample school is less than or 
 # equal to the average IQ score (100) among all the schools in the country 
@@ -97,6 +91,7 @@ Population_Mean_IQ <- 100
 # than the average IQ score (100) among all the schools in the country
 
 # Step 3: Calculate the t-statistic 
+Population_Mean_IQ <- 100
 t_statistic <- ((mean_IQ - Population_Mean_IQ) / standard_error_IQ)
 print(t_statistic)
 
@@ -110,7 +105,8 @@ print(p_value)
 # There is insufficient evidence to conclude that the sample mean is greater 
 # than 100.
 
-# Calculating Test Statistic and P-Value using T-Test formula to validate answers 
+# Calculating Test Statistic and P-Value using T-Test formula to validate 
+# previous answers 
 t.test(Student_IQ, mu = 100, alternative = c("greater"), conf.level=0.95)
 
 #####################
@@ -124,68 +120,77 @@ expenditure <- read.table("https://raw.githubusercontent.com/ASDS-TCD/StatsI_Fal
 str(expenditure)
 
 # Plotting each 
-png("Figure 1.1.png", width = 1500, height = 950, res = 200)
+png("Figure_1_1.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X1, expenditure$Y, col =1, 
      ylab = "per capita expenditure on housing assistance in state",  
      xlab="per capita personal income in state",
-     main="Per capita expenditure on housing assistance 
-     versus personal income in state")
+     main="")
 
 dev.off()
 # A moderate positive correlation is observable between per capita personal 
 # income in state and per capita expenditure on housing assistance in state. 
 
+png("Figure_1_2.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X2, expenditure$Y, col =2, 
      ylab = "per capita expenditure on housing assistance in state",  
      xlab="financially insecure residents per 100,000 in state",
      main="Per capita expenditure on housing assistance 
      versus financially insecure residents per 100,000 in state")
+dev.off()
 
 # A moderate positive correlation is observable between per capita expenditure 
 # on housing assistance and financially insecure residents per 100,000 in the 
 # state.
 
+png("Figure_1_3.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X3, expenditure$Y, col =3, 
-     ylab = "per capita expenditure on housing legassistance in state",  
+     ylab = "per capita expenditure on housing assistance in state",  
      xlab="people residing in urban areas per 1000 in state",
      main="Per capita expenditure on housing assistance 
      versus people residing in urban areas per 1000 in state")
+dev.off()
 
 # A moderate positive correlation is observable between people residing 
 # in urban areas per 1000 in state and per capita expenditure on housing legal 
 # assistance in state. 
 
+png("Figure_1_4.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X1, expenditure$X2, col =4, 
      ylab = "per capita personal income in state",  
      xlab="financially insecure residents per 100,000 in state",
-     main="Per capita expenditure on housing assistance 
-     versus personal income")
+     main="Per capita personal income in state 
+     versus financially insecure residents per 100,000 in state")
+dev.off()
 
 # There is no clear linear correlation observable between the per capita 
 # personal income in state and financially insecure residents per 100,000 in 
 # state. 
 
+png("Figure_1_5.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X1, expenditure$X3, col =5, 
      ylab = "per capita personal income in state",  
      xlab="people residing in urban areas per 1000 in state",
-     main="Per capita expenditure on housing assistance 
-     versus personal income")
+     main="Per capita personal income in state 
+     versus people residing in urban areas per 1000 in state")
+dev.off()
 
 # A moderate positive correlation is observable between people residing in 
 # urban areas per 1000 in state and per capita personal income in state. 
 
+png("Figure_1_6.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X2, expenditure$X3, col =6, 
      ylab = "financially insecure residents per 100,000 in state",  
      xlab="people residing in urban areas per 1000 in state",
-     main="Per capita expenditure on housing assistance 
-     versus personal income")
+     main="Financially insecure residents per 100,000 in state 
+     versus people residing in urban areas per 1000 in state")
+dev.off()
 
 # There is no clear linear correlation observable between people residing in 
 # urban areas per 1000 in state and financially insecure residents per 100,000 
 # in state.
 
 # Calculate correlation Co-efficient to provide numerical validation of 
-# graphical interpretation: 
+# graphical interpretation. 
 cor(expenditure$X1, expenditure$Y)
 cor(expenditure$X2, expenditure$Y)
 cor(expenditure$X3, expenditure$Y)
@@ -194,26 +199,28 @@ cor(expenditure$X1, expenditure$X3)
 cor(expenditure$X2, expenditure$X3)
 
 # Produce Box Plot to compare averages between regions. 
-
+png("Figure_2_1.png", width = 1500, height = 950, res = 200)
 boxplot(expenditure$Y ~ expenditure$Region, 
         main="Per capita expenditure on housing assistance per region",
         ylab="Region",
         xlab="Per capita expenditure on housing assistance",
         names=c("Northeast", "North Central", "South", "West"))
+dev.off()
 
-# The box plot visualises the interquartile range (IQR) - range from the 
-# 25th percentile (Q1) to the 75th percentile (Q3). 
+# The box plot visualises the median and interquartile range (IQR) - range 
+# from the 25th percentile (Q1) to the 75th percentile (Q3). 
 # The West Region has the highest median per capita expenditure on housing 
-# assistance. 
+# assistance.  
 # There is wide variation in the data for this region, as evidenced by the 
 # largest Interquartile Range across Regions. 
 
-
+png("Figure_2_2.png", width = 1500, height = 950, res = 200)
 plot(expenditure$X1, expenditure$Y, col =1, 
      ylab = "per capita expenditure on housing assistance in state",  
      xlab="per capita personal income in state",
      main="Per capita expenditure on housing assistance 
-     \nversus personal income in state")
+     versus personal income in state")
+dev.off()
 
 # A moderate positive correlation is observable between per capita personal 
 # income in state and per capita expenditure on housing assistance in state. 
@@ -222,6 +229,7 @@ plot(expenditure$X1, expenditure$Y, col =1,
 # There are some outliers in the data, particularly at higher end of per capita 
 # personal income in state. 
 
+png("Figure_2_3.png", width = 1500, height = 950, res = 200)
 # Creating vector of colours for identification
 colours <- c("Northeast" = 1, "North Central" = 2, "South" = 3, "West" = 4)
 icons <- c("Northeast" = 1, "North Central" = 2, "South" = 3, "West" = 4)
@@ -236,13 +244,16 @@ plot(expenditure$X1, expenditure$Y, col = colours[expenditure$Region],
 # Adding in a Legend to Identify which Icons and colours relate to each Region
 legend("topleft", legend =c("Northeast", "North Central", "South", "West"), 
        col = c(1, 2, 3, 4), pch = c(1, 2, 3, 4), title = "Region")
+dev.off()
 
 # Overall, there is a general upward trend, indicating that states with higher 
 # personal income per capita tend to spend more on housing assistance per capita.
-# The Northeast and West Regions show higher-income states spending more on 
+# The Northeast and West Regions show that higher-income states spend more on 
 # housing assistance.
 # North Central states show moderate expenditures on housing assistance at 
 # moderate income levels, with some variability.
-# Southern States display tend to have lower income and lower expenditure. 
+# Southern States tend to have lower income and lower expenditure. 
 
-setwd("C:\\Users\\darra\\Documents\\GitHub\\Applied_Statistics_1\\problemSets\\PS01\\my_answers")
+setwd("C:/Users/darra/OneDrive/Documents/GitHub/Applied_Statistics_1/problemSets/PS01/my_answers")
+
+
