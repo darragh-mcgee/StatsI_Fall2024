@@ -92,20 +92,28 @@ standardised_residual
 # cell of a contingency table if the two categorical variables were independent. 
 # Standardised residuals measure how much the observed frequencies deviate from 
 # the expected frequencies, helping to identify which cells contribute most to 
-# the Chi-squared statistic. 
-# Larger standardised residuals indicate greater deviations from expected 
-# frequencies, while smaller residuals suggest the observed and expected values 
-# are similar.
-# In this analysis, the residuals for "Not Stopped" (e.g., 0.136 and -0.183) are small, 
-# indicating minimal deviations from expected values and contributing little to 
-# the Chi-squared statistic. 
-# For "Bribe Requested" (e.g., -0.815 and 1.094) and 
-# "Stopped or Given Warning" (e.g., 0.819 and -1.099), the residuals 
-# suggest moderate deviations from expected values.
-# None of the standardised residuals provide substantial evidence of 
-# deviations from independence. As a result, these residuals support a higher 
-# p-value and reinforce the conclusion that there is insufficient evidence to 
-# reject the null hypothesis.
+# the Chi-squared statistic. The larger the standardised residual, the greater 
+# the deviation from the expected value, and the more it contributes to the Chi-squared statistic.
+# Standardised residuals are distributed like z-scores, essentially indicating 
+# how many standard deviations the observed value is from the expected value. 
+# Residuals closer to 0 indicate smaller deviations from expectation, while larger 
+# residuals signal greater deviations.
+# In this analysis, a significance threshold of 0.1 is being used, which corresponds 
+# to a z-score of approximately 1.645 (as per the Z-Table). 
+# Any standardised residual with an absolute value greater than 1.645 is considered 
+# statistically significant at the 0.1 level, meaning the deviation from expected 
+# values is unlikely to be due to chance.
+# In this analysis, the residuals for ”Not Stopped” (e.g., 0.136 and -0.183) are 
+# small, indicating minimal deviations from expected values and contributing little 
+# to the Chi-squared statistic.
+# For ”Bribe Requested” (e.g., -0.815 and 1.094) and ”Stopped or Given Warning” 
+# (e.g., 0.819 and -1.099), the residuals suggest moderate deviations from expected 
+# values. However, neither residual is above the critical z-score threshold of 1.645, 
+# meaning they do not provide substantial evidence of deviations from independence. 
+# Overall, since none of the standardised residuals exceed the defined threshold, 
+# there is no strong statistical evidence of significant deviations from independence. 
+# This supports the conclusion that there is insufficient evidence to reject the null hypothesis.
+
 
 # Question 2: 
 # Part A:
