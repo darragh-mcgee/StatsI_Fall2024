@@ -69,7 +69,7 @@ p_value <- pchisq(chi_squared_statistic, df = degrees_of_freedom, lower.tail=FAL
 p_value
 
 # Step 5: Conclusions
-# The p-value is greater than the significance level of 0.01. Therefore, 
+# The p-value is greater than the significance level of 0.1. Therefore, 
 # there is insufficient evidence to reject the null hypothesis that social 
 # class and the type of police interaction are statistically independent. 
 # This means we fail to conclude that social class and police interactions 
