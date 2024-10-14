@@ -78,11 +78,15 @@ p_value
 # Part C: 
 # Calculate the standardised residuals for each cell. 
 # Standardised Residuals refer to how far away each observation is from expectation.
-# The standardies residual formula is z = (observed frequency - expected frequency)/
-# standard error i.e. the square root of the expected frequency
+# The standardised residual formula is z = (observed frequency - expected frequency)/
+# standard error i.e. the square root of the expected frequency multiplied by 
+# (1 - row proportion)*(1 - column proportion)
 
+row_proportions <- row_totals / grand_total
+column_proportions <- column_totals / grand_total
 standardised_residual <- (observed_frequency_table - expected_frequency) / 
-                         (sqrt(expected_frequency))
+                         (sqrt(expected_frequency * (1 - row_proportion) 
+                         %*% t(1 - column_proportion)))
 standardised_residual
 
 # Part D: 
@@ -92,10 +96,11 @@ standardised_residual
 # cell of a contingency table if the two categorical variables were independent. 
 # Standardised residuals measure how much the observed frequencies deviate from 
 # the expected frequencies, helping to identify which cells contribute most to 
-# the Chi-squared statistic. The larger the standardised residual, the greater 
-# the deviation from the expected value, and the more it contributes to the Chi-squared statistic.
-# Standardised residuals are distributed like z-scores, essentially indicating 
-# how many standard deviations the observed value is from the expected value. 
+# the Chi-squared statistic. 
+# The larger the standardised residual, the greater the deviation from the 
+# expected value, and the more it contributes to the Chi-squared statistic.
+# Standardised residuals are distributed like z-scores, indicating how many 
+# standard deviations the observed value is from the expected value. 
 # Residuals closer to 0 indicate smaller deviations from expectation, while larger 
 # residuals signal greater deviations.
 # In this analysis, a significance threshold of 0.1 is being used, which corresponds 
@@ -103,28 +108,34 @@ standardised_residual
 # Any standardised residual with an absolute value greater than 1.645 is considered 
 # statistically significant at the 0.1 level, meaning the deviation from expected 
 # values is unlikely to be due to chance.
-# In this analysis, the residuals for ”Not Stopped” (e.g., 0.136 and -0.183) are 
-# small, indicating minimal deviations from expected values and contributing little 
-# to the Chi-squared statistic.
-# For ”Bribe Requested” (e.g., -0.815 and 1.094) and ”Stopped or Given Warning” 
-# (e.g., 0.819 and -1.099), the residuals suggest moderate deviations from expected 
-# values. However, neither residual is above the critical z-score threshold of 1.645, 
-# meaning they do not provide substantial evidence of deviations from independence. 
-# Overall, since none of the standardised residuals exceed the defined threshold, 
-# there is no strong statistical evidence of significant deviations from independence. 
+# For the "Not Stopped" category, the residuals are 0.322 (Upper class) and -0.322 
+# (Lower class), both of which are close to 0. These small residuals indicate that 
+# the observed frequencies are very similar to the expected frequencies, 
+# contributing little to the Chi-squared statistic.
+# For the "Bribe Requested" category, the residuals are -1.642 (Upper class) and 
+# 1.642 (Lower class), which are close to the critical threshold of 1.645 but do 
+# not exceed it. This suggests moderate deviations from the expected values but 
+# not enough to be considered statistically significant at the 0.1 level.
+# In the "Stopped or Given Warning" category, the residuals are 1.523 (Upper class) 
+# and -1.523 (Lower class), which also show moderate deviations from expected 
+# values but fall short of the critical threshold of 1.645.
+# Overall, since none of the standardised residuals exceed the critical value of 
+# 1.645, there is no strong statistical evidence of major deviations from 
+# the expected frequencies, meaning that the variables likely exhibit independence.
 # This supports the conclusion that there is insufficient evidence to reject the null hypothesis.
-
 
 # Question 2: 
 # Part A:
 # Step 1: Assumptions about Data
 # Linear relationship: There is a linear relationship between the explanatory 
 # and response variables.
+# Random Sampling: The data is randomly sampled from the population, ensuring 
+# it is representative of the population.
 # Independence: The observations are independent of each other.
 # Normally Distributed Errors: For any given value of the independent variable, 
 # the errors (residuals) are assumed to follow a normal distribution.
 # Constant variance (Homoscedasticity): The variance of the errors is constant 
-# across all values of the independent variable.
+# across all values of the explanatory variable.
 
 # Step 2: Setting Up Hypothesis
 # Null Hypothesis: The policy of reserving village council head positions for 
