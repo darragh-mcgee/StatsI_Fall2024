@@ -128,7 +128,7 @@
 	
 \vspace{0.5cm} \begin{itemize}[left=0pt, label=\textbullet]
 \item The intercept of 0.579031 indicates that when the logarithmic difference in campaign spending between the incumbent and challenger (\texttt{difflog}) is zero, the incumbent's predicted vote share (\texttt{voteshare}) is 57.9 percent.
-\item There is a positive, statistically significant relationship between \texttt{difflog} and \texttt{voteshare}, with a p-value of less than 0.001 (indicated by three stars in the regression table).
+\item There is a positive, statistically relevant relationship between \texttt{difflog} and \texttt{voteshare}, with a p-value of less than 0.001 (indicated by three stars in the regression table).
 \item Specifically, a one-unit increase in \texttt{difflog} is associated with an average increase of 0.04 (or 4 percentage points) in \texttt{voteshare}. 
 \end{itemize}
 
@@ -222,7 +222,7 @@ where:
 \vspace{0.5cm} \begin{itemize}[left=0pt, label=\textbullet]
 	\item The intercept of 0.5075 indicates that when the logarithmic difference in campaign spending between the incumbent and challenger (\texttt{difflog}) is zero, the predicted vote share of the presidential candidate of the incumbent (\texttt{presvote}) is 50.75 percent.
 	
-	\item There is a positive, statistically significant relationship between \texttt{difflog} and \texttt{presvote}, with a p-value of less than 0.001 (indicated by three stars in the regression table).
+	\item There is a positive, statistically relevant relationship between \texttt{difflog} and \texttt{presvote}, with a p-value of less than 0.001 (indicated by three stars in the regression table).
 	
 	\item Specifically, a one-unit increase in \texttt{difflog} is associated with an average increase of 0.0238 (or 2.38 percentage points) in the vote share of the presidential candidate of the incumbent.
 \end{itemize}
@@ -303,7 +303,7 @@ where:
 \vspace{0.5cm} \begin{itemize}[left=0pt, label=\textbullet]
 	\item The intercept of 0.4413 indicates that when the vote share of the incumbent’s presidential candidate (\texttt{presvote}) is zero, the predicted vote share of the incumbent (\texttt{voteshare}) is 44.13 percent.
 	
-	\item There is a positive, statistically significant relationship between \texttt{presvote} and \texttt{voteshare}, with a p-value of less than 0.001 (indicated by three stars in the regression table).
+	\item There is a positive, statistically relevant relationship between \texttt{presvote} and \texttt{voteshare}, with a p-value of less than 0.001 (indicated by three stars in the regression table).
 	
 	\item Specifically, a one-unit increase in \texttt{presvote} is associated with an average increase of 0.388 (or 38.8 percentage points) in \texttt{voteshare}.
 \end{itemize}
@@ -373,7 +373,7 @@ where:
 
 \vspace{0.5cm} \begin{itemize}[left=0pt, label=\textbullet]
 	\item
-	\noindent There is a positive, statistically significant relationship between the residuals from model 1 and model 2, with a p-value of less than 0.001 (indicated by three stars in the regression table).
+	\noindent There is a positive, statistically relevant relationship between the residuals from model 1 and model 2, with a p-value of less than 0.001 (indicated by three stars in the regression table).
 	\item
 	\noindent Specifically, a one-unit increase in the residual (error) from model 2 is associated with an average increase of 0.2569 in the residual (error) from model 1.  
 \end{itemize}
@@ -444,8 +444,8 @@ where:
 
 \vspace{0.5cm} \begin{itemize}[left=0pt, label=\textbullet]
 	\item The intercept of 0.4486 represents the average predicted vote share of the incumbent when both \texttt{difflog} and \texttt{presvote} are zero.
-	\item There is a positive, statistically significant relationship between the log-transformed difference in campaign spending (\texttt{difflog}) and the incumbent’s vote share. Specifically, a one-unit increase in \texttt{difflog} is associated with an average increase of 3.55 percentage points in the incumbent’s vote share, holding \texttt{presvote} constant.
-	\item There is also a positive, statistically significant relationship between the presidential candidate’s vote share (\texttt{presvote}) and the incumbent’s vote share. Specifically, a one-unit increase in \texttt{presvote} is associated with an average increase of 25.69 percentage points in the incumbent’s vote share, holding \texttt{difflog} constant.
+	\item There is a positive, statistically relevant relationship between the log-transformed difference in campaign spending (\texttt{difflog}) and the incumbent’s vote share (\texttt{voteshare}). Specifically, a one-unit increase in \texttt{difflog} is associated with an average increase of 3.55 percentage points in \texttt{voteshare}, holding \texttt{presvote} constant.
+	\item There is also a positive, statistically relevant relationship between (\texttt{presvote}) and (\texttt{voteshare}). Specifically, a one-unit increase in \texttt{presvote} is associated with an average increase of 25.69 percentage points in \texttt{voteshare}, holding \texttt{difflog} constant.
 	\item The multivariate regression model explains approximately 44.96\% of the variation in \texttt{voteshare}, as indicated by the Multiple R-squared of 0.4496, suggesting a moderate fit.
 \end{itemize}
 
@@ -473,7 +473,7 @@ where:
 \end{enumerate}
 \begin{itemize}
 	\item The coefficients for \texttt{residuals.model.2} in Model 4 and \texttt{presvote} in Model 5 are the same because they both measure the same underlying relationship.
-	\item This relationship reflects the co-variation between the presidential candidate’s vote share (\texttt{presvote}) and the incumbent’s vote share (\texttt{voteshare}) that is not explained by the differences in campaign spending.
+	\item This relationship reflects the co-variation between the \texttt{presvote} and \texttt{voteshare} that is not explained by \texttt{difflog}. 
 	\item In Model 4, this relationship is measured through the residuals (unexplained variation), while in Model 5, it captures the partial effect of \texttt{presvote} directly.
 \end{itemize}
 

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.25)  9 NOV 2024 20:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.9.25)  11 NOV 2024 10:45
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1002,13 +1002,6 @@ Overfull \hbox (2.46762pt too wide) in paragraph at lines 304--305
 \OT1/cmr/m/n/12 )
  []
 
-
-Overfull \hbox (9.90921pt too wide) in paragraph at lines 306--307
-[]\OT1/cmr/m/n/12 There is a pos-i-tive, sta-tis-ti-cally sig-nif-i-cant re-la-
-tion-ship be-tween \OT1/cmtt/m/n/12 presvote \OT1/cmr/m/n/12 and \OT1/cmtt/m/n/
-12 voteshare\OT1/cmr/m/n/12 ,
- []
-
 [8] (PS3_answers_DMcG.R)
 <Figure_3_1.png, id=103, 542.025pt x 343.2825pt>
 File: Figure_3_1.png Graphic file (type png)
@@ -1022,8 +1015,14 @@ File: Figure_4_1.png Graphic file (type png)
 <use Figure_4_1.png>
 Package pdftex.def Info: Figure_4_1.png  used on input line 390.
 (pdftex.def)             Requested size: 469.75502pt x 297.52193pt.
- [11 <./Figure_4_1.png>] [12] (PS3_answers_DMcG.R) [13]
-[14] (PS3.aux)
+ [11 <./Figure_4_1.png>] [12] (PS3_answers_DMcG.R)
+Overfull \hbox (23.94379pt too wide) in paragraph at lines 448--449
+[]\OT1/cmr/m/n/12 There is also a pos-i-tive, sta-tis-ti-cally rel-e-vant re-la
+-tion-ship be-tween (\OT1/cmtt/m/n/12 presvote\OT1/cmr/m/n/12 ) and (\OT1/cmtt/
+m/n/12 voteshare\OT1/cmr/m/n/12 ).
+ []
+
+[13] [14] (PS3.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -1054,7 +1053,7 @@ ers/darra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb
 mr8.pfb><C:/Users/darra/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb><C:/Users/darra/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmtt12.pfb>
-Output written on PS3.pdf (14 pages, 354029 bytes).
+Output written on PS3.pdf (14 pages, 357277 bytes).
 PDF statistics:
  241 PDF objects out of 1000 (max. 8388607)
  95 named destinations out of 1000 (max. 500000)

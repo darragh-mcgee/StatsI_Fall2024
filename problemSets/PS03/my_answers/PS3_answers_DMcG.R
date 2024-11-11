@@ -26,7 +26,7 @@ summary(model_1)
 # spending between the incumbent and challenger is zero, the incumbent's 
 # vote share is predicted to be 57.9%.
 
-# There is a positive, statistically significant relationship between the log-transformed difference in 
+# There is a positive, statistically relevant relationship between the log-transformed difference in 
 # campaign spending (Incumbent - Challenger) and the incumbent's vote share, 
 # with a p-value of less than 0.001 (indicated by three stars in the regression table). 
 # Specifically, a one-unit increase in the logged difference in campaign spending is 
@@ -38,8 +38,8 @@ png("Figure_1_1.png", width = 1500, height = 950, res = 200)
 plot(voteshare ~ difflog, data = inc.sub, 
      xlab = "Difference in Campaign Spending (Incumbent - Challenger)",
      ylab = "Incumbent Vote Share",
-     main = "Scatterplot of Effect of Campaign Spending Difference 
-     on Incumbent Vote Share")
+     main = "Scatterplot of Relationship between Campaign Spending Difference 
+     and Incumbent Vote Share")
 abline(model_1, col = "blue", lwd = 1)
 dev.off()
 
@@ -60,7 +60,7 @@ summary(model_2)
 # spending between the incumbent and challenger is zero, the vote share of the 
 # presidential candidate of the incumbent is predicted to be 50.758%.
 
-# There is a positive, statistically significant relationship between the log-transformed difference in 
+# There is a positive, statistically relevant relationship between the log-transformed difference in 
 # campaign spending (Incumbent - Challenger) and the vote share of the presidential 
 # candidate of the incumbent, with a p-value of less than 0.001 
 # (indicated by three stars in the regression table). Specifically, a one-unit 
@@ -74,8 +74,8 @@ png("Figure_2_1.png", width = 1500, height = 950, res = 200)
 plot(presvote ~ difflog, data = inc.sub, 
      ylab = "Vote Share of Presidential Candidate of Incumbent",
      xlab = "Difference in Campaign Spending (Incumbent - Challenger)", 
-     main = "Scatterplot of Effect of Campaign Spending Difference on Vote 
-     Share of Presidential Candidate of Incumbent")
+     main = "Scatterplot of Relationship betwen Campaign Spending 
+     Difference and Vote Share of Presidential Candidate of Incumbent")
 abline(model_2, col = "green", lwd = 1)
 dev.off()
 
@@ -94,7 +94,7 @@ summary(model_3)
 # The intercept of 0.4413 indicates that when the vote share of the incumbent’s 
 # presidential candidate is zero, the predicted vote share of the incumbent is 44.13%
 
-# There is a positive, statistically significant relationship between the vote share of 
+# There is a positive, statistically relevant relationship between the vote share of 
 # the incumbent’s presidential candidate and the incumbent’s vote share, with a 
 # p-value of less than 0.001 (indicated by three stars in the regression table). 
 # Specifically, a one-unit increase in the vote share of the incumbent’s presidential 
@@ -107,8 +107,8 @@ png("Figure_3_1.png", width = 1500, height = 950, res = 200)
 plot(voteshare ~ presvote, data = inc.sub, 
      xlab = "Vote Share of Presidential Candidate of Incumbent", 
      ylab = "Incumbent Vote Share", 
-     main = "Scatterplot of Effect Vote Share of Presidential Candidate 
-     on Incumbent Vote Share")
+     main = "Scatterplot of Relationship between Vote Share of 
+     Presidential Candidate of Incumbent and Incumbent Vote Share")
 abline(model_3, col = "red", lwd = 1)
 dev.off()
 
@@ -121,7 +121,7 @@ dev.off()
 model_4 <- lm(residuals.model.1 ~ residuals.model.2)
 summary(model_4)
 
-# There is a positive, statistically significant relationship between the 
+# There is a positive, statistically relevant relationship between the 
 # residuals from model 1 and model 2, with a p-value of less than 0.001 
 # (indicated by three stars in the regression table).Specifically, a one-unit 
 # increase in the residual (error) from model 2 is associated with an average 
@@ -135,8 +135,8 @@ par(mar = c(5, 7, 5, 3))
 plot(residuals.model.1 ~ residuals.model.2, data = inc.sub, 
      xlab = "Variation in Presidential Candidate's Vote Share 
      Not Explained by Campaign Spending",
-     ylab = "Variation in Incumbent's Vote Share Not 
-     Explained by Campaign Spending", 
+     ylab = "Variation in Incumbent's Vote Share 
+     Not Explained by Campaign Spending", 
      main = "Scatterplot of Unexplained Variation in Incumbent Vote Share 
      versus Unexplained Variation in Presidential Candidate's Vote Share")
 abline(model_4, col = "purple", lwd = 1)
@@ -153,11 +153,11 @@ summary(model_5)
 
 # The intercept of 0.4486 represents the average predicted vote share of the incumbent 
 # when both difflog and presvote are zero. 
-# There is a positive, statistically significant relationship between the 
+# There is a positive, statistically relevant relationship between the 
 # log-transformed difference in campaign spending and the incumbent’s vote share.
 # Specifically, a one-unit increase in difflog is associated with an average increase of 
 # 3.55 percentage points in the incumbent’s vote share, holding presvote constant.
-# There is also a positive, statistically significant relationship between the 
+# There is also a positive, statistically relevant relationship between the 
 # presidential candidate’s vote share (presvote) and the incumbent’s vote share.  
 # Specifically, a one-unit increase in presvote is associated with an average increase 
 # of 25.69 percentage points in the incumbent’s vote share, holding difflog constant.
