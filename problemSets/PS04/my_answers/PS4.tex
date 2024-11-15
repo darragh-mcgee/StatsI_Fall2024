@@ -1,0 +1,364 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{graphicx,textcomp}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{fullpage}
+\usepackage{color}
+\usepackage[reqno]{amsmath}
+\usepackage{amsthm}
+\usepackage{fancyvrb}
+\usepackage{amssymb,enumerate}
+\usepackage[all]{xy}
+\usepackage{endnotes}
+\usepackage{lscape}
+\newtheorem{com}{Comment}
+\usepackage{float}
+\usepackage{hyperref}
+\newtheorem{lem} {Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}{Definition}
+\newtheorem{cor}{Corollary}
+\newtheorem{obs}{Observation}
+\usepackage[compact]{titlesec}
+\usepackage{dcolumn}
+\usepackage{tikz}
+\usetikzlibrary{arrows}
+\usepackage{multirow}
+\usepackage{xcolor}
+\newcolumntype{.}{D{.}{.}{-1}}
+\newcolumntype{d}[1]{D{.}{.}{#1}}
+\definecolor{light-gray}{gray}{0.65}
+\usepackage{url}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{booktabs}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\footnotesize,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,                    
+	keepspaces=true,                 
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+\newcommand{\Sref}[1]{Section~\ref{#1}}
+\newtheorem{hyp}{Hypothesis}
+
+
+\title{Problem Set 4}
+\date {Name: Darragh McGee (18319331)\\}
+\author{Applied Stats/Quant Methods 1}
+
+
+\begin{document}
+	\maketitle
+	\vspace{.5cm}
+\section*{Question 1: Economics}
+\vspace{.25cm}
+\noindent 	
+In this question, use the \texttt{prestige} dataset in the \texttt{car} library. First, run the following commands:
+
+\begin{verbatim}
+install.packages(car)
+library(car)
+data(Prestige)
+help(Prestige)
+\end{verbatim} 
+
+
+\noindent We would like to study whether individuals with higher levels of income have more prestigious jobs. Moreover, we would like to study whether professionals have more prestigious jobs than blue and white collar workers.
+
+\begin{enumerate}
+	\item [(a)]
+	Create a new variable \texttt{professional} by recoding the variable \texttt{type} so that professionals are coded as $1$, and blue and white collar workers are coded as $0$ (Hint: \texttt{ifelse}).
+\end{enumerate}
+	
+\noindent Create new variable \texttt{professional} using ifelse():
+\lstinputlisting[language=R, firstline=23, lastline=24]{PS4_answers_DMcG.R}
+
+\begin{enumerate}
+	\item [(b)]
+	Run a linear model with \texttt{prestige} as an outcome and \texttt{income}, \texttt{professional}, and the interaction of the two as predictors (Note: this is a continuous $\times$ dummy interaction.)
+\end{enumerate}
+\noindent Linear Regression Model with \texttt{prestige} as outcome variable: 
+\lstinputlisting[language=R, firstline=27, lastline=28]{PS4_answers_DMcG.R}
+
+\newpage
+\begin{table}[h!]
+	\centering
+	\caption{Summary of Regression Results for Prestige Model}
+	\vspace{0.25cm}
+	\begin{tabular}{lcccc}
+		\toprule
+		\textbf{Variable} & \textbf{Estimate} & \textbf{Std. Error} & \textbf{t value} & \textbf{Significance} \\ 
+		\midrule
+		Intercept              & 21.1423 & 2.8044 & 7.539 & *** \\ 
+		income                 & 0.0032  & 0.0005 & 6.351 & *** \\ 
+		professional1          & 37.7813 & 4.2483 & 8.893 & *** \\ 
+		income:professional1    & -0.0023 & 0.0006 & -4.098 & *** \\ 
+		\midrule
+		\textbf{Model Summary} & & & & \\
+		Observations		   & 98 & & & \\
+		Residual Std. Error    & 8.012 (df = 94)  & & & \\ 
+		Multiple R-squared     & 0.7872  & & & \\ 
+		Adjusted R-squared     & 0.7804  & & & \\ 
+		F-statistic            & 115.9*** (df = 3; 94) & & & \\
+		\bottomrule
+	\end{tabular}
+\end{table}
+
+\vspace{0.1cm}
+\noindent\textbf{Significance Codes:} \\
+*** $p < 0.001$, ** $p < 0.01$, * $p < 0.05$
+
+\vspace{0.5cm}
+\begin{enumerate}
+	\item [(c)]
+	Write the prediction equation based on the result.
+\end{enumerate}
+
+\noindent Prediction Equation for \texttt{prestige} model: 
+\[\text{prestige} = 21.142 + 0.003 \cdot \text{income} + 37.781 \cdot \text{professional} - 0.002 \cdot (\text{income} \times \text{professional})\]
+
+\begin{enumerate}
+	\item [(d)]
+	Interpret the coefficient for \texttt{income}.
+\end{enumerate}
+\begin{itemize}[left=0pt]
+	\item 
+	An interaction term moderates the individual effect of each explanatory variable by capturing how the relationship between the explanatory variable and outcome depends on another explanatory variable. Therefore, the coefficients of individual explanatory variables represent the isolated effects when the interacting variable is 0. 
+	\item
+	When the individual does not work as a professional (professional = 0) a one unit (i.e. one dollar) increase in income is associated with a 0.003 increase in the individuals prestige score.
+\end{itemize}
+\begin{enumerate}
+	\item [(e)]
+	Interpret the coefficient for \texttt{professional}.
+\end{enumerate}	
+\begin{itemize}[left=0pt]
+	\item 
+	When income is equal to zero, having a professional job (professional = 0) is associated with a 37.781 increase in prestige score. However, in reality, it is highly unlikely for an individual to hold a professional job with no income. 
+	\item 
+	Nonetheless, it represents the baseline difference between professionals and blue collar and white collar workers controlling for income. 
+\end{itemize}
+
+
+\begin{enumerate}
+	\item [(f)]
+	What is the effect of a \$1,000 increase in income on prestige score for professional occupations? In other words, we are interested in the marginal effect of income when the variable \texttt{professional} takes the value of $1$. Calculate the change in $\hat{y}$ associated with a \$1,000 increase in income based on your answer for (c).
+\end{enumerate}		
+\noindent Predicted Prestige Score for Professional Occupations with 1000 dollar Income
+\lstinputlisting[language=R, firstline=53, lastline=54]{PS4_answers_DMcG.R}
+\begin{verbatim}
+59.923
+\end{verbatim}
+
+\noindent Baseline Prestige Score for Professional Occupations with 0 dollar Income
+\lstinputlisting[language=R, firstline=57, lastline=58]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	58.923
+\end{verbatim}
+
+\noindent Difference in Prestige Score from a 1,000 dollar increase in Income for professionals
+\lstinputlisting[language=R, firstline=61, lastline=62]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	1
+\end{verbatim}
+
+\begin{itemize}[left=0pt]
+	\item 
+	A professional's prestige score is equal to 58.923 (21.142 + 37.781) when their income is zero. Therefore, the increase in prestige score associated with an increase in income of 1000 dollars for a professional can be estimated as 1 (59.923 - 58.923). 
+	\item 
+	The marginal effect for each dollar increase in income for professionals can be calculated by dividing 1 by 1000, which gives a value of 0.001. 
+	\item 
+	The marginal increase in prestige for each dollar increase in income for professionals can be directly verified from the prediction equation itself: (0.003 - 0.002) = 0.001.
+\end{itemize}
+
+\newpage
+\begin{enumerate}
+	\item [(g)]
+	What is the effect of changing one's occupations from non-professional to professional when her income is \$6,000? We are interested in the marginal effect of professional jobs when the variable \texttt{income} takes the value of $6,000$. Calculate the change in $\hat{y}$ based on your answer for (c).
+\end{enumerate}
+
+\noindent Predicted Prestige Score for Non-Professional Occupations with 6000 dollar Income
+\lstinputlisting[language=R, firstline = 79, lastline=80]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	39.142
+\end{verbatim}
+
+\noindent Predicted Prestige Score for Professional Occupations with 6000 dollar Income
+\lstinputlisting[language=R, firstline = 83, lastline=84]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	64.923
+\end{verbatim}
+
+\noindent Difference in Prestige Score between Professionals and Non-Professionals earning 6000 dollars
+\lstinputlisting[language=R, firstline = 87, lastline=88]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	25.781
+\end{verbatim}
+
+\begin{itemize}[left=0pt]
+	\item 
+	A non-professional's prestige score is 39.142 when their income is 6,000 dollars. A professional's prestige score is 64.923 at the same income level. Thus, the difference in prestige between a professional and a non-professional with a 6,000 dollar income is 25.781 (64.923 - 39.142), representing the effect of professional occupation on prestige at this income level.
+\end{itemize}
+\newpage
+
+\section*{Question 2: Political Science}
+\vspace{.2cm}
+\noindent 	Researchers are interested in learning the effect of all of those yard signs on voting preferences.\footnote{Donald P. Green, Jonathan	S. Krasno, Alexander Coppock, Benjamin D. Farrer,	Brandon Lenoir, Joshua N. Zingher. 2016. ``The effects of lawn signs on vote outcomes: Results from four randomized field experiments.'' Electoral Studies 41: 143-150. } Working with a campaign in Fairfax County, Virginia, 131 precincts were randomly divided into a treatment and control group. In 30 precincts, signs were posted around the precinct that read, ``For Sale: Terry McAuliffe. Don't Sellout Virgina on November 5.'' \\
+
+Below is the result of a regression with two variables and a constant.  The dependent variable is the proportion of the vote that went to McAuliff's opponent Ken Cuccinelli. The first variable indicates whether a precinct was randomly assigned to have the sign against McAuliffe posted. The second variable indicates
+a precinct that was adjacent to a precinct in the treatment group (since people in those precincts might be exposed to the signs).  \\
+
+\vspace{.15cm}
+\begin{table}[!htbp]
+	\centering 
+	\textbf{Impact of lawn signs on vote share}\\
+	\begin{tabular}{@{\extracolsep{5pt}}lccc} 
+		\\[-1.8ex] 
+		\hline \\[-1.8ex]
+		Precinct assigned lawn signs  (n=30)  & 0.042\\
+		& (0.016) \\
+		Precinct adjacent to lawn signs (n=76) & 0.042 \\
+		&  (0.013) \\
+		Constant  & 0.302\\
+		& (0.011)
+		\\
+		\hline \\
+	\end{tabular}\\
+	\footnotesize{\textit{Notes:} $R^2$=0.094, N=131}
+\end{table}
+
+\newpage
+\begin{enumerate}
+	\item [(a)] Use the results from a linear regression to determine whether having these yard signs in a precinct affects vote share (e.g., conduct a hypothesis test with $\alpha = .05$).
+\end{enumerate}
+
+\noindent\textbf{Linear Regression Assumptions}
+\begin{itemize}[left=0pt]
+	\item 
+	\textbf{Linear Relationship:} There is a linear relationship between the outcome and explanatory variables.
+	\item
+	\textbf{Independence of Errors:} The errors (residuals) are independent of each other.
+	\item 
+	\textbf{Normality of errors:} For any given value of the explanatory variable, the errors (residuals) are assumed to follow a normal distribution.
+	\item
+	\textbf{Constant variance (Homoscedasticity)}: The variance of the errors is constant across all values of the explanatory variable. 
+	\item
+	\textbf{No Perfect Multi-Collinearity:} The explanatory variables should not be perfectly correlated with each other. 
+\end{itemize}
+\vspace{0.5cm}	
+	
+\noindent\textbf {Setting Up Hypothesis}
+\begin{itemize}[left=0pt]
+	\item
+	\textbf{Null Hypothesis:} Having yard signs in a precinct DOES NOT affect vote share ($\beta = 0$)
+	\item
+	\textbf{Alternative Hypothesis:} Having yard signs in a precinct DOES affect vote share ($\beta \neq 0$)
+\end{itemize}
+
+\vspace{0.2cm}
+\noindent\textbf {Calculate the Test Statistic}
+\lstinputlisting[language=R, firstline = 115, lastline=116]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	2.625
+\end{verbatim}
+
+\noindent\textbf {Calculate the p-value}
+\lstinputlisting[language=R, firstline = 119, lastline=120]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	0.009711646
+\end{verbatim}
+
+\noindent\textbf {Conclusion}
+\begin{itemize}[left=0pt]
+	\item 
+	Reject the Null Hypothesis as the p-value is less than 0.05 (below the significance level).  
+	\item 
+	There is sufficient evidence to conclude that having yard signs in a precinct does effect vote share. 
+\end{itemize}
+
+\newpage
+\begin{enumerate}	
+	\item [(b)]  Use the results to determine whether being
+	next to precincts with these yard signs affects vote
+	share (e.g., conduct a hypothesis test with $\alpha = .05$).
+\end{enumerate}
+
+\noindent\textbf {Setting Up Hypothesis}
+\begin{itemize}[left=0pt]
+	\item
+	\textbf{Null Hypothesis:} Being next to precincts with yard signs DOES NOT affect vote share ($\beta = 0$).
+	\item
+	\textbf{Alternative Hypothesis:} Being adjacent to precincts with yard signs DOES affect vote share ($\beta \neq 0$).
+\end{itemize}
+
+\noindent\textbf {Calculate the Test Statistic}
+\lstinputlisting[language=R, firstline = 136, lastline=137]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	3.230769
+\end{verbatim}
+
+\noindent\textbf {Calculate the p-value}
+\lstinputlisting[language=R, firstline = 140, lastline=141]{PS4_answers_DMcG.R}
+\begin{verbatim}
+	0.001566685
+\end{verbatim}
+
+\noindent\textbf {Conclusion}
+\begin{itemize}[left=0pt]
+	\item 
+	Reject the Null Hypothesis as the p-value is less than 0.05 (below the significance level).   
+	\item 
+	There is sufficient evidence to conclude that being adjacent to precincts with yard signs DOES affect vote share. 
+\end{itemize}
+
+\vspace{0.5cm}
+\begin{enumerate}
+	\item [(c)] Interpret the coefficient for the constant term substantively.
+\end{enumerate}
+\noindent Prediction Equation for \texttt{Proportion of Vote Share}
+\begin{equation}
+	\begin{split}
+		\text{Proportion of Vote Share} &= 0.302 + 0.042 \cdot \text{Precincts Assigned Lawn Signs} \\
+		&\quad + 0.042 \cdot \text{Precincts Adjacent to Lawn Signs}
+	\end{split}
+\end{equation}
+
+\vspace{0.25cm}
+\begin{itemize}[left=0pt]
+	\item 
+	The constant (0.302) represents the expected proportion of the vote share that went to McAuliff's opponent, Ken Cuccinelli, in precincts that neither had yard signs nor were adjacent to precincts with yard signs.  
+\end{itemize}
+
+\newpage
+\begin{enumerate}
+	\item [(d)] Evaluate the model fit for this regression.  What does this	tell us about the importance of yard signs versus other factors that are not modeled?
+\end{enumerate}  
+\begin{itemize}[left=0pt]
+	\item 
+	The R-squared value (i.e., the proportion of variance in the outcome variable explained by the explanatory variables in the model) is 0.094. This means that less than 10 percent of the variance in vote share is explained by the presence of yard signs in the precinct or being adjacent to a precinct with yard signs.
+	\item  
+	The relatively low R-squared value suggests that other factors likely have a more substantial impact on vote share.
+\end{itemize}
+
+
+\end{document}
